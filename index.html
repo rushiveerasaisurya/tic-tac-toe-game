@@ -7,40 +7,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
+    <div id="header">
         <h1 id="heading">Tic-Tac-Toe</h1>
-    </div>
-    <div id="msg">
-        <div id="msg1"></div>
-        <div id="turn"></div>
-        <div id="msg2"></div>
-    </div>
-    <div id="selectionPage">
+        <button id="newgame">NEW GAME</button>
         
+    </div>
+    
+    <div id="content">
+        <div id="msg">
+            <div id="msg1"></div>
+            <div id="turn"></div>
+            <div id="msg2"></div>
+        </div>
+        <div id="selectionPage">
             
-        <div id="selectionContainer">
-            <div id="selectionElements">
-                <h3 id="option">select the option</h3>
-                <button id="player" class="selection">player vs player</button>
-                <button id="computer" class="selection">player vs computer</button>
+                
+            <div id="selectionContainer">
+                <div id="selectionElements">
+                    <h3 id="option">select the option</h3>
+                    <button id="player" class="selection">player vs player</button>
+                    <button id="computer" class="selection">player vs computer</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="gameBoard">
+            <div id="gameBoardContainer">               
+                    <button class="box" id="box1"></button>
+                    <button class="box" id="box2"></button>
+                    <button class="box" id="box3"></button>
+                    <button class="box" id="box4"></button>
+                    <button class="box" id="box5"></button>
+                    <button class="box" id="box6"></button>
+                    <button class="box" id="box7"></button>
+                    <button class="box" id="box8"></button>
+                    <button class="box" id="box9"></button>
             </div>
         </div>
     </div>
-    
-    <div id="gameBoard">
-        <div id="gameBoardContainer">               
-                <button class="box" id="box1"></button>
-                <button class="box" id="box2"></button>
-                <button class="box" id="box3"></button>
-                <button class="box" id="box4"></button>
-                <button class="box" id="box5"></button>
-                <button class="box" id="box6"></button>
-                <button class="box" id="box7"></button>
-                <button class="box" id="box8"></button>
-                <button class="box" id="box9"></button>
+    <div id="resultcontainer">
+        
+        <div id="result">
+            <button id="exit">x</button>
+            
+            <p id="resultmsg"></p>
+            
         </div>
-    </div>
 
+    </div>
 <script src="index.js"></script>
 </body>
 </html>
