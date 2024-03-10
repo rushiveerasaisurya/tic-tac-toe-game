@@ -3,6 +3,10 @@
     font-family: Roboto-Light;
     
 }
+body, html {
+    overflow: hidden;
+}
+
 body{
     margin: 0px;
     padding: 0px;
@@ -12,7 +16,13 @@ body{
     background-size: cover;
     font-family: Roboto-Light;
 }
-
+#header{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+}
 /*heading*/
 #heading{
     text-align: center;
@@ -23,6 +33,21 @@ body{
     font-weight: bolder; 
     color: #FFFFFF;
     text-shadow: 0 0 10px #D22060, 0 0 20px #D22060, 0 0 30px #D22060; 
+}
+#newgame{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    height: 55px;
+    width: 175px;
+    color:#FFFFFF;
+    border:solid 1px ;
+    border-radius: 25px;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    cursor: pointer;
+    display: none;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
 }
 /*selection page*/
 #option{
@@ -37,7 +62,8 @@ body{
     place-items: center;
     margin:0px;
     padding: 0px;
-    
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
 }
 #selectionElements{
     display: grid;
@@ -107,7 +133,8 @@ body{
 display: grid;
 place-items: center;  
 display: none;
-animation-name: easy;
+animation-name: fadeIn;
+animation-duration: 0.5s;
 }
 
 #gameBoardContainer{
@@ -144,11 +171,126 @@ animation-name: easy;
     color: #FFFFFF;
     text-shadow: 0 0 10px #20d220, 0 0 20px #20d220, 0 0 30px #20d220; 
     display: none;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
 }
-@media screen and (max-width: 600px) {
+#resultcontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    #msg{
-        font-size: 1.25em;
+}
+#result{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    border-radius: 25px;
+    height: 70vh;
+    width: 80vw;
+    border: 2px,solid,black;
+    background-color: rgba(255, 255, 255, 0.062);
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #20d220, 0 0 20px #20d220, 0 0 30px #20d220;
+    font-size: 5em;
+    backdrop-filter: blur(5px);
+    display: none;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+}
+#resultmsg{
+    text-align: center;
+    justify-content: center;
+}
+#exit{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 1.5rem;
+    height: 50px;
+    width:50px;
+    cursor: pointer;
+    font-weight: bolder;
+    color: white;
+    border: solid 2px rgb(255, 255, 255);
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.062);
+    backdrop-filter: blur(20px);
+}
+#exit:hover{
+    background-color: rgb(219, 6, 6);
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+    #heading{
+        font-size: 3em;
+        margin-top: 15%;
+    }
+    #newgame{
+        height: 70px;
+        width: 300px;
+        top:850px;
+        right: auto;
+    }
+    #gameboard{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        animation-name: fadeIn;
+        animation-duration: 0.5s;
+    }
+    #gameBoardContainer{
+        height: 40vh;
+        width:70vw;
+        margin-top: 15%;
     }
 
+    #msg{
+        margin-top: 50px;
+    }
+    #selectionElements{
+        height: 40vh;
+        width:70vw;
+        padding-right: 30px;
+        margin-top: 10%;
+        margin-left: -15px;
+  
+    }
+    #selectionContainer{
+        margin-bottom: 100px;
+    }
+    #msg{
+        font-size: 2em;
+        flex-wrap: wrap;
+  
+    }
+    #msg1{
+        order: 1;
+    }
+    #turn{
+        order: 3;
+        margin-top: 50px;
+    }
+    #msg2{
+        order:2;
+    }
+    #result{
+        height: 40vh;
+        width:70vw;
+        background-repeat: repeat-x;
+        margin-bottom: 400px;
+        margin-top: 100px;
+    }
 }
