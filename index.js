@@ -16,12 +16,35 @@ let msg2=document.getElementById("msg2");
 let msg=document.getElementById("msg");
 let selectionElements=document.getElementById("selectionElements");
 let gameBoard=document.getElementById("gameBoard");
+let result=document.getElementById("result");
+let resultmsg=document.getElementById("resultmsg");
+let content=document.getElementById("content");
+let exit=document.getElementById("exit");
+let newgame=document.getElementById("newgame");
 let x = "X";
 x = "<span style='text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff'>" + x + "</span>";
 let o = "O";
 o = "<span style='text-shadow: 0 0 10px #D22060, 0 0 20px #D22060, 0 0 30px #D22060'>" + o + "</span>";
-currentPlayer="X";
-turn.textContent="Player 1's turn"
+let player1win="Player 1 wins!";
+player1win = "<span style='text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff'>"+ player1win +"</span>";
+let player2win= "Player 2 wins!";
+player2win = "<span style='text-shadow: 0 0 10px #D22060, 0 0 20px #D22060, 0 0 30px #D22060'>" + player2win + "</span>";
+let computerwin = "computer wins!"
+computerwin = "<span style='text-shadow: 0 0 10px #D22060, 0 0 20px #D22060, 0 0 30px #D22060'>" + computerwin + "</span>";
+currentPlayer = "X";
+turn.textContent="Player 1's turn";
+function exitresult(){
+    exit.onclick=function(){
+        resultcontainer.replaceWith(content);
+        disableClicks();
+    }
+    
+}
+function newgamebtn(){
+    newgame.onclick=function(){
+        location.reload();
+    }
+}
 function checkWinner(){
     const lines=
     [
@@ -48,43 +71,59 @@ function disableClicks() {
     }
 }
 function checkdraw(){
-    let isDraw = true;
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].textContent === "") {
-            isDraw = false;
-            break;
+            return false; 
         }
     }
-    if (isDraw) {
-        return "draw";
-    }
-    return null;
+
+    return true; 
 }
+
 pvp.onclick=function(){
     msg1.textContent="player 1 is X";
     msg2.textContent="player 2 is O";
     selectionElements.replaceWith(gameBoard);
     msg.style.display="flex";
-    gameBoard.style.display="grid"
+    gameBoard.style.display="grid";
+    newgame.style.display="block";
+    newgamebtn();
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].onclick = function() {
             if (boxes[i].textContent == "") { 
                 boxes[i].innerHTML = currentPlayer === "X" ? x : o; 
                 currentPlayer = currentPlayer === "X" ? "O" : "X"; 
                 turn.textContent = currentPlayer === "X" ? "Player 1's turn" : "Player 2's turn";
+                
                 let winner=checkWinner();
                 if(winner){
-                    turn.textContent = winner === "X" ? "Player 1 is winner!" : "Player 2 is winner!";
-                    
+                    content.replaceWith(resultcontainer);
+                    result.style.display="flex";
+                    resultmsg.style.display="flex";
+                    resultmsg.innerHTML = winner === "X" ? player1win : player2win;
+
                     disableClicks();
-                    
+
+                    exitresult();
+                    turn.style.display="none";
+                    return;
                     }
+                     
                 }
                 let draw=checkdraw();
                 if(draw){
-                    turn.textContent = "its a draw";
+                    content.replaceWith(resultcontainer);
+                    result.style.display="flex";
+                    resultmsg.style.display="flex";
+                    resultmsg.innerHTML = "its a draw!"
+
                     disableClicks();
+
+                    exitresult();
+                    turn.style.display="none";
+                    
                 }
+
             }
         }
         
@@ -95,20 +134,28 @@ pvc.onclick=function(){
     selectionElements.replaceWith(gameBoard);
     msg.style.display="flex";
     gameBoard.style.display="grid"
-
-
+    newgame.style.display="block";
+    newgamebtn();
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].onclick = function() {
         if (boxes[i].textContent == "") { 
             boxes[i].innerHTML = currentPlayer === "X" ? x : o; 
             currentPlayer = currentPlayer === "X" ? "O" : "X"; 
-            turn.textContent = currentPlayer === "X" ? "Player 1's turn" : "Computer's turn"; 
+            turn.textContent = currentPlayer === "X" ? "Player 1's turn" : "computer's turn"; 
             
 
             let winner = checkWinner();
             if (winner) {
-                turn.textContent = winner === "X" ? "Player 1 is the winner!" : "Computer is the winner!";
+
+                content.replaceWith(resultcontainer);
+                result.style.display="flex";
+                resultmsg.style.display="flex";
+                resultmsg.innerHTML = winner === "X" ? player1win : computerwin;
+
                 disableClicks();
+
+                exitresult();
+                turn.style.display="none";
             } else {
 
                 setTimeout(computerTurn, 500);
@@ -128,8 +175,14 @@ function computerTurn() {
                 turn.textContent = "Player 1's turn";
                 let winner = checkWinner();
                 if (winner) {
-                    turn.textContent = winner === "X" ? "Player 1 is the winner!" : "Computer is the winner!";
+                    content.replaceWith(resultcontainer);
+                    result.style.display="flex";
+                    resultmsg.style.display="flex";
+                    resultmsg.innerHTML = winner === "X" ? player1win : computerwin;
+
                     disableClicks();
+                    exitresult();
+                    turn.style.display="none";
                 }
                 return; 
             }
@@ -147,8 +200,14 @@ function computerTurn() {
                 turn.textContent = "Player 1's turn";
                 let winner = checkWinner();
                 if (winner) {
-                    turn.textContent = winner === "X" ? "Player 1 is the winner!" : "Computer is the winner!";
+                    content.replaceWith(resultcontainer);
+                    result.style.display="flex";
+                    resultmsg.style.display="flex";
+                    resultmsg.innerHTML = winner === "X" ? player1win : computerwin;
+
                     disableClicks();
+                    exitresult();
+                    turn.style.display="none";
                 }
                 return; 
             }
@@ -164,8 +223,13 @@ function computerTurn() {
         }
     }
     if (availableMoves.length === 0) {
-        turn.textContent = "It's a draw!";
+        content.replaceWith(resultcontainer);
+        result.style.display="flex";
+        resultmsg.style.display="flex";
+        resultmsg.innerHTML = "its a draw";
         disableClicks();
+        exitresult();
+        turn.style.display="none";
         return;
     }
     let randomIndex = Math.floor(Math.random() * availableMoves.length);
@@ -178,15 +242,15 @@ function computerTurn() {
 
     let winner = checkWinner();
     if (winner) {
-        turn.textContent = winner === "X" ? "Player 1 is the winner!" : "Computer is the winner!";
+        content.replaceWith(resultcontainer);
+        result.style.display="flex";
+        resultmsg.style.display="flex";
+        resultmsg.innerHTML = winner === "X" ? player1win : computerwin;
+
         disableClicks();
+        exitresult();
+        turn.style.display="none";
     }
     let draw=checkdraw();
 
 }
-
-
-
-
-
-
