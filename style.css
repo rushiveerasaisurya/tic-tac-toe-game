@@ -241,10 +241,12 @@ animation-duration: 0.5s;
     #newgame{
         height: 70px;
         width: 300px;
-        top:850px;
+        top:83vh;
         right: auto;
     }
     #gameboard{
+        height: auto;
+        width: auto;
         display: flex;
         justify-content: center;
         align-content: center;
